@@ -45,7 +45,7 @@ public class App {
 
     public static String[] placeCharacter(String[] board, String character, byte position) {
         if (isEmpty(board, (byte)(position - 1))) {
-            System.out.println(character);
+            // System.out.println(character);
             board[position - 1] = character;
         }
 
@@ -69,7 +69,7 @@ public class App {
 
     public static byte aiTurn(String[] board) {
         String[] characters = {"X", "O"};
-        byte[] corners = {0, 2, 6, 9};
+        byte[] corners = {0, 2, 6, 8};
         byte[] edges = {1, 3, 5, 7};
         String[] copy = copyArray(board);
 
@@ -80,7 +80,7 @@ public class App {
                 copy[v] = characters[i];
 
                 if (hasWon(copy, characters[i])) {
-                    //System.out.println(1);
+                    //System.out.println("a");
                     return v;
                 }
 
@@ -92,13 +92,14 @@ public class App {
 
         for (byte i = 0; i < corners.length; i++) {
             if (board[i] != "-") continue;
-            //System.out.println(2);
+            // System.out.println("b");
+            // System.out.println(Arrays.toString(board));
             return corners[i];
         }
 
         for (byte i = 0; i < edges.length; i++) {
             if (board[i] != "-") continue;
-            //System.out.println(3);
+            // System.out.println("c");
             return edges[i];
         }
 
