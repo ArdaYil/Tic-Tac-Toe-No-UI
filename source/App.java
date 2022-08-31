@@ -77,7 +77,10 @@ public class App {
         String[] characters = {"X", "O"};
         byte[] corners = {0, 2, 6, 8};
         byte[] edges = {1, 3, 5, 7};
-        String[] copy = copyArray(board);
+        String[] copy = board.clone();
+
+        System.out.println(copy);
+        System.out.println(board);
 
         for (byte i = 0; i < 2; i++) {
             for (byte v = 0; v < board.length; v++) {
@@ -86,7 +89,7 @@ public class App {
                 copy[v] = characters[i];
 
                 if (hasWon(copy, characters[i])) {
-                    //System.out.println("a");
+                    System.out.println("a");
                     return v;
                 }
 
@@ -98,29 +101,18 @@ public class App {
 
         for (byte i = 0; i < corners.length; i++) {
             if (board[i] != "-") continue;
-            // System.out.println("b");
+            System.out.println("b");
             // System.out.println(Arrays.toString(board));
             return corners[i];
         }
 
         for (byte i = 0; i < edges.length; i++) {
             if (board[i] != "-") continue;
-            // System.out.println("c");
+            System.out.println("c");
             return edges[i];
         }
 
         return -1;
-    }
-
-    public static String[] copyArray(String[] array) {
-        String[] copiedArray = {"-", "-", "-", "-", "-", "-", "-", "-", "-"};
-
-        for (int i = 0; i < array.length; i++) {
-            
-            copiedArray[i] = array[i];
-        }
-
-        return array;
     }
 
     public static boolean isEmpty(String[] board, byte position) {
