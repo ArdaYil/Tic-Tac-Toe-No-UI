@@ -19,9 +19,11 @@ public class App {
         displayBoard(board);
 
         byte position = promptTurn();
+        System.out.println("X place");
         board = placeCharacter(board, "X", position);
 
         byte aiPosition = aiTurn(board);
+        System.out.println("O place");
         System.out.println(aiPosition);
         board = placeCharacter(board, "O", (byte)(aiPosition + 1));
 
@@ -29,7 +31,11 @@ public class App {
     }
 
     public static void displayBoard(String[] board) {
-        System.out.println(board[0] + " | " + board[1] + " | " + board[2] + "\n" + board[3] + " | " + board[4] + " | " + board[5] + "\n"  + board[6] + " | " + board[7] + " | " + board[8]);
+        System.out.println(
+            board[0] + " | " + board[1] + " | " + board[2] + "\n" + 
+            board[3] + " | " + board[4] + " | " + board[5] + "\n" + 
+            board[6] + " | " + board[7] + " | " + board[8]
+        );
     }
 
     public static byte promptTurn(){
