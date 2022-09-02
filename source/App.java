@@ -4,18 +4,30 @@ package source;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.Hashtable;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        String[] board = {"-", "-", "-", "-", "-", "-", "-", "-", "-"};
+        char[] board = {'-', '-', '-','-', '-', '-', '-', '-', '-'};
 
         while (true) {
             board = execution(board);
         }
     }
 
-    public static String[] execution(String[] board) {
+    public static void newGame() {
+        Hashtable <
+    }
+
+    public static void intro() {
+        System.out.println("Welcome to Tic Tac Toe. Press enter");
+
+        Scanner newScanner = new Scanner(System.in);
+        newScanner.nextLine();
+    }
+
+    public static char[] execution(char[] board) {
         displayBoard(board);
 
         byte position = promptTurn();
@@ -30,7 +42,7 @@ public class App {
         return board;
     }
 
-    public static void displayBoard(String[] board) {
+    public static void displayBoard(char[] board) {
         System.out.println(
             board[0] + " | " + board[1] + " | " + board[2] + "\n" + 
             board[3] + " | " + board[4] + " | " + board[5] + "\n" + 
@@ -49,7 +61,7 @@ public class App {
         return position;
     }
 
-    public static String[] placeCharacter(String[] board, String character, byte position) {
+    public static char[] placeCharacter(char[] board, char character, byte position) {
         if (isEmpty(board, (byte)(position - 1))) {
             // System.out.println(character);
             board[position - 1] = character;
@@ -74,7 +86,7 @@ public class App {
     }
 
     public static byte aiTurn(String[] board) {
-        String[] characters = {"X", "O"};
+        String[] characters = {"O", "X"};
         byte[] corners = {0, 2, 6, 8};
         byte[] edges = {1, 3, 5, 7};
         String[] copy = board.clone();
@@ -101,21 +113,19 @@ public class App {
 
         for (byte i = 0; i < corners.length; i++) {
             if (board[i] != "-") continue;
-            System.out.println("b");
-            // System.out.println(Arrays.toString(board));
             return corners[i];
         }
 
         for (byte i = 0; i < edges.length; i++) {
             if (board[i] != "-") continue;
-            System.out.println("c");
+
             return edges[i];
         }
 
         return -1;
     }
 
-    public static boolean isEmpty(String[] board, byte position) {
-        return board[position] == "-";
+    public static boolean isEmpty(char[] board, byte position) {
+        return board[position] == '-';
     }
 }
