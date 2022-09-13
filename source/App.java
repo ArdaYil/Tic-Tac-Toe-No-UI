@@ -12,12 +12,14 @@ public class App {
         char[] board = {'-', '-', '-','-', '-', '-', '-', '-', '-'};
 
         while (true) {
-            board = execution(board);
+            board = gameTurn(board);
         }
     }
 
-    public static void newGame() {
-        Hashtable <
+    public static String[] newGame() {
+        String[] newGame = {};
+
+        return newGame;
     }
 
     public static void intro() {
@@ -27,7 +29,7 @@ public class App {
         newScanner.nextLine();
     }
 
-    public static char[] execution(char[] board) {
+    public static char[] gameTurn(char[] board) {
         displayBoard(board);
 
         byte position = promptTurn();
@@ -113,6 +115,7 @@ public class App {
 
         for (byte i = 0; i < corners.length; i++) {
             if (board[i] != "-") continue;
+
             return corners[i];
         }
 
