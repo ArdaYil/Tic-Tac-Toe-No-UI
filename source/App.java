@@ -5,13 +5,14 @@ package source;
 import java.util.Scanner;
 
 public class App {
+    static byte[] corners = {0, 2, 6, 8};
     public static void main(String[] args) {
         while (true) {
             game();
         }
     }
 
-    public static void game() {
+    private static void game() {
         char[] board = {'-', '-', '-','-', '-', '-', '-', '-', '-'};
 
         while (true) {
@@ -19,14 +20,14 @@ public class App {
         }
     }
 
-    public static void intro() {
+    private static void intro() {
         System.out.println("Welcome to Tic Tac Toe. Press enter");
 
         Scanner newScanner = new Scanner(System.in);
         newScanner.nextLine();
     }
 
-    public static char[] gameTurn(char[] board) {
+    private static char[] gameTurn(char[] board) {
         displayBoard(board);
 
         byte position = promptTurn();
@@ -38,7 +39,7 @@ public class App {
         return board;
     }
 
-    public static void displayBoard(char[] board) {
+    private static void displayBoard(char[] board) {
         System.out.println(
             board[0] + " | " + board[1] + " | " + board[2] + "\n" + 
             board[3] + " | " + board[4] + " | " + board[5] + "\n" + 
@@ -46,7 +47,7 @@ public class App {
         );
     }
 
-    public static byte promptTurn(){
+    private static byte promptTurn(){
         String message = "Pick a number between 1-9";
 
         System.out.print(message + ": ");
@@ -57,7 +58,7 @@ public class App {
         return position;
     }
 
-    public static char[] placeCharacter(char[] board, char character, byte position) {
+    private static char[] placeCharacter(char[] board, char character, byte position) {
         if (isEmpty(board, (byte)(position - 1))) {
             board[position - 1] = character;
         }
@@ -65,7 +66,7 @@ public class App {
         return board;
     }
 
-    public static boolean hasWon(char[] board, char character) {
+    private static boolean hasWon(char[] board, char character) {
         boolean rule1 = board[0] == character && board[1] == character && board[2] == character;
         boolean rule2 = board[3] == character && board[4] == character && board[5] == character;
         boolean rule3 = board[6] == character && board[7] == character && board[8] == character;
@@ -80,9 +81,18 @@ public class App {
         return rule1 || rule2 || rule3 || rule4 || rule5 || rule6 || rule7 || rule8;
     }
 
-    public static byte aiTurn(char[] board) {
+    private static Boolean isCorner(byte position) {
+        for (byte corner : corners) {
+            if (position != corner) continue;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    private static byte aiTurn(char[] board, byte prevMove) {
         char[] characters = {'O', 'X'};
-        byte[] corners = {0, 2, 6, 8};
         byte[] edges = {1, 3, 5, 7};
         char[] copy = board.clone();
 
@@ -117,7 +127,7 @@ public class App {
         return -1;
     }
 
-    public static boolean isEmpty(char[] board, byte position) {
+    private static boolean isEmpty(char[] board, byte position) {
         return board[position] == '-';
     }
 }
