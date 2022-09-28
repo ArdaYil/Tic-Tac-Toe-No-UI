@@ -1,29 +1,22 @@
+
+
 package source;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.Hashtable;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
+        while (true) {
+            game();
+        }
+    }
+
+    public static void game() {
         char[] board = {'-', '-', '-','-', '-', '-', '-', '-', '-'};
 
         while (true) {
             board = gameTurn(board);
         }
-    }
-
-    public static String[] newGame() {
-        String[] newGame = {};
-
-        return newGame;
-    }
-
-    public static String[] initPlayer() {
-        String[] player = {};
-
-        return player;
     }
 
     public static void intro() {
