@@ -91,7 +91,7 @@ public class App {
         return false;
     }
 
-    private static byte aiTurn(char[] board, byte prevMove) {
+    private static byte aiTurn(char[] board) {
         char[] characters = {'O', 'X'};
         byte[] edges = {1, 3, 5, 7};
         char[] copy = board.clone();
